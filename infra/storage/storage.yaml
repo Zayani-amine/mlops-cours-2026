@@ -88,6 +88,11 @@ spec:
       containers:
         - name: seaweedfs
           image: ghcr.io/chrislusf/seaweedfs:4.48
+          # Le Service s3 (même namespace) fait injecter S3_PORT=tcp://<clusterIP>:8333
+          # par Kubernetes ; SeaweedFS mappe le flag s3.port sur cette variable et
+          # plante (strconv.ParseInt sur une URL). On la fige explicitement.
+          env:
+            - { name: S3_PORT, value: "8333" }
           args:
             - server
             - -dir=/data

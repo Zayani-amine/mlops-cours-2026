@@ -59,19 +59,20 @@ up: cluster preload storage mlflow ## Socle complet du Lab 0
 .PHONY: pf pf-stop
 pf: ## Port-forwards : S3 :8333, filer :8888, MLflow :5000 (en arrière-plan)
 	mkdir -p $(PF_LOG)
-	pkill -f "port-forward svc/s3 8333" || true
-	pkill -f "port-forward svc/mlflow 5000" || true
-	nohup kubectl --context $(KCTX) -n storage port-forward svc/s3 8333:8333 8888:8888 >$(PF_LOG)/s3.log 2>&1 &
-	nohup kubectl --context $(KCTX) -n mlflow  port-forward svc/mlflow 5000:5000      >$(PF_LOG)/mlflow.log 2>&1 &
+	# Ne PAS utiliser pkill -f ici : avec .ONESHELL la recette entière tient dans la
+	# ligne de commande du shell, donc le motif "port-forward svc/s3 8333" matcherait
+	# le shell lui-même et le tuerait (make: *** [pf] Terminated). On suit les PIDs.
+	for n in s3 mlflow; do [ -f $(PF_LOG)/$$n.pid ] && kill $$(cat $(PF_LOG)/$$n.pid) 2>/dev/null || true; done
+	nohup kubectl --context $(KCTX) -n storage port-forward svc/s3 8333:8333 8888:8888 >$(PF_LOG)/s3.log 2>&1 & echo $$! > $(PF_LOG)/s3.pid
+	nohup kubectl --context $(KCTX) -n mlflow  port-forward svc/mlflow 5000:5000      >$(PF_LOG)/mlflow.log 2>&1 & echo $$! > $(PF_LOG)/mlflow.pid
 	sleep 3
 	echo "S3     -> http://localhost:8333"
 	echo "Filer  -> http://localhost:8888"
 	echo "MLflow -> http://localhost:5000"
 
 pf-stop: ## Arrête tous les port-forwards du cours (S3, MLflow, UI KFP)
-	pkill -f "port-forward svc/s3 8333" || true
-	pkill -f "port-forward svc/mlflow 5000" || true
-	pkill -f "port-forward svc/ml-pipeline-ui 8080" || true
+	for n in s3 mlflow; do [ -f $(PF_LOG)/$$n.pid ] && kill $$(cat $(PF_LOG)/$$n.pid) 2>/dev/null || true; rm -f $(PF_LOG)/$$n.pid; done
+	pkill -f "[m]l-pipeline-ui 8080" || true
 
 # --- Briques ajoutées module par module ----------------------------------------
 .PHONY: kfp airflow kserve argocd monitoring external-secrets
