@@ -13,7 +13,7 @@ cover_footer_text: Onze fiches de référence — Lab 0 à Lab 10
 
 *Utilité et rôle des outils, services et commandes — cours MLOps 36h*
 
-Les documents « Commandes & outils » du cours listent les commandes sans expliquer à quoi elles servent. Ces fiches comblent ce manque : pour chaque lab, le rôle de chaque outil et service, les cibles Makefile et scripts, puis les commandes clés expliquées étape par étape, avec les pièges à connaître.
+Ces fiches ont été rédigées pour clarifier et comprendre les commandes de chaque lab. Elles ne font pas partie des supports officiels du cours et ne remplacent pas les énoncés : pour chaque lab, le rôle de chaque outil et service, les cibles Makefile et scripts, puis les commandes clés expliquées étape par étape, avec les pièges à connaître.
 
 ## Sommaire
 

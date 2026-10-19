@@ -1,8 +1,8 @@
 # Labs Solutions Info — cours MLOps 36h
 
-Fiches de référence : **utilité et rôle des outils, services et commandes** de chaque lab.
+Fiches personnelles de référence : **utilité et rôle des outils, services et commandes** de chaque lab.
 
-Les documents « Commandes & outils » du cours listent les commandes sans expliquer à quoi elles servent. Ces fiches comblent ce manque : pour chaque lab, on trouve le rôle de chaque outil/service, les cibles Makefile et scripts, puis les commandes clés expliquées étape par étape, et les pièges à connaître.
+Ces fiches ont été rédigées pour clarifier et comprendre les commandes de chaque lab. Elles ne font pas partie des supports officiels du cours et ne remplacent pas les énoncés : pour chaque lab, on y trouve le rôle de chaque outil/service, les cibles Makefile et scripts, puis les commandes clés expliquées étape par étape, et les pièges à connaître.
 
 ## Sommaire
 
@@ -20,6 +20,6 @@ Les documents « Commandes & outils » du cours listent les commandes sans expli
 | Lab 9 | RAG MLOps évalué et observé | [lab9-outils-commandes.md](lab9-outils-commandes.md) |
 | Lab 10 | Mini-projet MLOps | [lab10-outils-commandes.md](lab10-outils-commandes.md) |
 
-## Comment ces fiches ont été produites
+## À propos de ces fiches
 
-Chaque fiche est synthétisée à partir des PDF du lab correspondant (`LabX-Enonce.pdf`, `LabX-Commandes.pdf`, `LabX-Problemes.pdf`) situés dans `../labX/`.
+Ces fiches sont un travail personnel de prise de notes et de reformulation, réalisé pour comprendre l'utilité des outils et le rôle des commandes utilisées dans chaque lab. Elles n'ont pas de statut officiel et peuvent évoluer.
