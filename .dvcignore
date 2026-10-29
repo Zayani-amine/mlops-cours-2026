@@ -1,0 +1,5 @@
+# Fichier : .dvcignore
+# Créé par dvc init. Dossiers que DVC n a pas besoin de parcourir.
+.venv/
+features/data/
+mlruns/
